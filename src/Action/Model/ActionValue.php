@@ -39,7 +39,7 @@ class ActionValue
     /**
      * @inheritdoc
      */
-    function __toString()
+    public function __toString()
     {
         return $this->value;
     }

@@ -1,0 +1,18 @@
+default:
+    formatters:
+        progress: true
+
+    suites:
+        domain:
+            paths: [ "%paths.base%/tests/Feature/domain" ]
+            contexts:
+                - Tests\Feature\Context\Domain\Action\ActionDomainContext
+                - Behat\MinkExtension\Context\MinkContext
+                - Tests\Feature\Context\DatabaseContext
+
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony2: ~

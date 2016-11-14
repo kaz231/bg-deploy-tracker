@@ -39,7 +39,8 @@
         "friendsofphp/php-cs-fixer": "2.0.0-alpha",
         "behat/behat": "^3.2",
         "phing/phing": "3.0.x-dev",
-        "squizlabs/php_codesniffer": "^2.0"
+        "squizlabs/php_codesniffer": "^2.0",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "symfony-scripts": [

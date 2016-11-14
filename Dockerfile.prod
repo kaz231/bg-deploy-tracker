@@ -1,0 +1,12 @@
+FROM webdevops/php-nginx
+
+MAINTAINER Kamil Zajac <kaz231@outlook.com>
+
+ENV WEB_DOCUMENT_ROOT  /app/web
+ENV WEB_DOCUMENT_INDEX app.php
+
+COPY ./build/* /app/
+
+WORKDIR /app
+
+EXPOSE 80

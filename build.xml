@@ -59,6 +59,14 @@
         </exec>
     </target>
 
+    <target name="php-cs-fixer-ci" description="Fix coding standards using PHP CS Fixer">
+        <mkdir dir="${project.basedir}/var/phpcs" description="Creating of cache dir for PHP-CS-FIXER"/>
+        <exec executable="${bin_dir}/php-cs-fixer" checkreturn="true" logoutput="true">
+            <arg value="fix"/>
+            <arg value="--config=${project.basedir}/.php_cs"/>
+        </exec>
+    </target>
+
     <target name="drop-database-test" description="Drops the test database">
         <exec executable="${sf_console}" checkreturn="true" logoutput="true">
             <arg line="${console_test_args}"/>
@@ -105,5 +113,26 @@
         <exec executable="${sf_console}" checkreturn="true" logoutput="true">
             <arg line="cache:clear"/>
         </exec>
+    </target>
+
+    <target name="php-cs" description="Find coding standard violations using PHP_CodeSniffer">
+        <exec executable="${bin_dir}/phpcs" checkreturn="true" logoutput="true">
+            <arg value="--standard=${project.basedir}/phpcs.xml"/>
+            <arg value="--extensions=php"/>
+            <arg value="${source_dir}"/>
+            <arg value="${tests_dir}"/>
+        </exec>
+    </target>
+
+    <target name="static-analysis" description="Run static code analysis">
+        <phingcall target="php-cs-fixer"/>
+        <phingcall target="php-cs"/>
+        <phingcall target="php-md"/>
+    </target>
+
+    <target name="static-analysis-ci" description="Run static code analysis">
+        <phingcall target="php-cs-fixer-ci"/>
+        <phingcall target="php-cs"/>
+        <phingcall target="php-md"/>
     </target>
 </project>

@@ -1,6 +1,7 @@
 <?php
 namespace Action\Model;
 
+use AppBundle\Message\Bus\Event\RecordsDomainEvents;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,6 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Action
 {
+    use RecordsDomainEvents;
+
     /**
      * @ORM\Id()
      * @ORM\Column(type="guid")
@@ -68,6 +71,8 @@ class Action
             $name,
             $value
         );
+
+        $self->record(new ActionWasRecorded($self->id(), $self->name(), $self->value(), $self->createdAt()));
 
         return $self;
     }

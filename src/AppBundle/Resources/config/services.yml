@@ -1,7 +1,20 @@
 services:
-    tracker.command_bus.flushes_entity_manager_changes_after_handling_next_middleware:
+    tracker.message_bus.flushes_entity_manager_changes_after_handling_next_middleware:
         class: AppBundle\Message\Bus\Middleware\FlushesEntityManagerChangesAfterHandlingNext
         arguments:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: command_bus_middleware }
+
+    tracker.message_bus.domain_events_collection:
+        class: AppBundle\Message\Bus\Event\DomainEventsCollection
+        factory: [ AppBundle\Message\Bus\Event\DomainEventsCollection, instance ]
+        tags:
+            - { name: event_recorder }
+
+    tracker.message_bus.domain_events_middleware:
+        class: AppBundle\Message\Bus\Middleware\DomainEventsMiddleware
+        arguments:
+            - "@tracker.message_bus.domain_events_collection"
+        tags:
+            - { name: command_bus_middleware, priority: -1000 }
