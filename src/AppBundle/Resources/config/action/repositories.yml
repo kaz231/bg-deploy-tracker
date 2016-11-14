@@ -1,0 +1,9 @@
+services:
+    tracker.repository.action.orm:
+        class: Action\Infrastructure\Persistence\ORMActionRepository
+        factory: [ "@doctrine.orm.entity_manager", "getRepository" ]
+        arguments:
+            - Action\Model\Action
+
+    tracker.repository.action:
+        alias: tracker.repository.action.orm

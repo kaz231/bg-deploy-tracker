@@ -1,0 +1,7 @@
+services:
+    tracker.action.register:
+        class: Action\Application\Command\RegisterActionHandler
+        arguments:
+            - "@tracker.repository.action"
+        tags:
+            - { name: command_handler, handles: Action\Application\Command\RegisterAction }

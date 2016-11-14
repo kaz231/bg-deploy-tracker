@@ -1,0 +1,7 @@
+services:
+    tracker.command_bus.flushes_entity_manager_changes_after_handling_next_middleware:
+        class: AppBundle\Message\Bus\Middleware\FlushesEntityManagerChangesAfterHandlingNext
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: command_bus_middleware }

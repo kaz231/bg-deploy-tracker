@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="tracker" default="test">
+    <autoloader autoloaderpath="vendor/autoload.php"/>
+
+    <property name="env" value="dev" description="Available values: test, prod and dev"/>
+    <property name="bin_dir" value="${project.basedir}/vendor/bin"/>
+    <property name="source_dir" value="${project.basedir}/src"/>
+    <property name="tests_dir" value="${project.basedir}/tests"/>
+    <property name="phpunit_config" value="${project.basedir}/phpunit.xml"/>
+    <property name="sf_console" value="${project.basedir}/bin/console"/>
+    <property name="console_test_args" value="--env=test" />
+    <property name="var_dir" value="${project.basedir}/var"/>
+
+    <target name="setup-database-test" description="Drops old test database and creates a new one">
+        <phingcall target="drop-database-test"/>
+        <phingcall target="create-database-test"/>
+    </target>
+
+    <target name="setup-database">
+        <phingcall target="drop-database"/>
+        <phingcall target="create-database"/>
+    </target>
+
+    <target name="unit-test" description="Run unit tests">
+        <exec executable="${bin_dir}/phpunit" checkreturn="true" logoutput="true">
+            <arg line="-c ${phpunit_config} --testsuite unit"/>
+        </exec>
+    </target>
+
+    <target name="integration-test" description="Run integration tests">
+        <exec executable="${bin_dir}/phpunit" checkreturn="true" logoutput="true">
+            <arg line="-c ${phpunit_config} --testsuite integration"/>
+        </exec>
+    </target>
+
+    <target name="behat-test" description="Run behat test scenarios">
+        <exec executable="${bin_dir}/behat" checkreturn="true" logoutput="true"/>
+    </target>
+
+    <target name="test" description="Run unit, integration and behat tests">
+        <phingcall target="unit-test"/>
+        <phingcall target="integration-test"/>
+        <phingcall target="behat-test"/>
+    </target>
+
+    <target name="php-md" description="Perform project mess detection using PHPMD">
+        <exec executable="${bin_dir}/phpmd" checkreturn="true" logoutput="true">
+            <arg path="${source_dir}"/>
+            <arg value="text"/>
+            <arg value="${project.basedir}/phpmd.xml"/>
+        </exec>
+    </target>
+
+    <target name="php-cs-fixer" description="Fix coding standards using PHP CS Fixer">
+        <mkdir dir="${project.basedir}/var/phpcs" description="Creating of cache dir for PHP-CS-FIXER"/>
+        <exec executable="${bin_dir}/php-cs-fixer" checkreturn="true" logoutput="true">
+            <arg value="fix"/>
+            <arg value="--config=${project.basedir}/.php_cs"/>
+        </exec>
+    </target>
+
+    <target name="drop-database-test" description="Drops the test database">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="${console_test_args}"/>
+            <arg line="doctrine:database:drop --force"/>
+        </exec>
+    </target>
+
+    <target name="create-database-test" description="Creates the test database">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="${console_test_args}"/>
+            <arg line="doctrine:database:create"/>
+        </exec>
+
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="${console_test_args}"/>
+            <arg line="doctrine:schema:create"/>
+        </exec>
+    </target>
+
+    <target name="drop-database" description="Drops the test database">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="doctrine:database:drop --force"/>
+        </exec>
+    </target>
+
+    <target name="create-database" description="Creates the test database">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="doctrine:database:create"/>
+        </exec>
+
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="doctrine:schema:create"/>
+        </exec>
+    </target>
+
+    <target name="cache-clear-test" description="Clears cache files for test env">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="${console_test_args}"/>
+            <arg line="cache:clear"/>
+        </exec>
+    </target>
+
+    <target name="cache-clear" description="Clears cache files">
+        <exec executable="${sf_console}" checkreturn="true" logoutput="true">
+            <arg line="cache:clear"/>
+        </exec>
+    </target>
+</project>
