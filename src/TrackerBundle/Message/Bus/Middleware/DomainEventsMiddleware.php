@@ -1,12 +1,12 @@
 <?php
-namespace AppBundle\Message\Bus\Middleware;
+namespace TrackerBundle\Message\Bus\Middleware;
 
-use AppBundle\Message\Bus\Event\DomainEventsCollection;
+use TrackerBundle\Message\Bus\Event\DomainEventsCollection;
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
 
 /**
  * Class DomainEventsMiddleware
- * @package AppBundle\Message\Bus\Middleware
+ * @package TrackerBundle\Message\Bus\Middleware
  */
 class DomainEventsMiddleware implements MessageBusMiddleware
 {

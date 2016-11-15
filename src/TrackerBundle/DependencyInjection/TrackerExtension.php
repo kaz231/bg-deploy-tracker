@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\DependencyInjection;
+namespace TrackerBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 /**
  * Class AppExtension
- * @package AppBundle\DependencyInjection
+ * @package TrackerBundle\DependencyInjection
  */
 class TrackerExtension extends ConfigurableExtension
 {

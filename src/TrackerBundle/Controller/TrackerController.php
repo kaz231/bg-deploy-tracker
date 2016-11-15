@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Controller;
+namespace TrackerBundle\Controller;
 
 use Action\Application\Command\RegisterAction;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class TrackerController
- * @package AppBundle\Controller
+ * @package TrackerBundle\Controller
  * @Route("/tracker")
  */
 class TrackerController extends Controller

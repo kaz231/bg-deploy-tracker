@@ -1,7 +1,7 @@
 <?php
-namespace AppBundle;
+namespace TrackerBundle;
 
-use AppBundle\DependencyInjection\TrackerExtension;
+use TrackerBundle\DependencyInjection\TrackerExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class TrackerBundle extends Bundle

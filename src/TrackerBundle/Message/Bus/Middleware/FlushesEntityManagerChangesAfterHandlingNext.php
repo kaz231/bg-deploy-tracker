@@ -1,12 +1,12 @@
 <?php
-namespace AppBundle\Message\Bus\Middleware;
+namespace TrackerBundle\Message\Bus\Middleware;
 
 use Doctrine\ORM\EntityManager;
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
 
 /**
  * Class FlushesEntityManagerChangesAfterHandlingNext
- * @package AppBundle\Message\Bus\Middleware
+ * @package TrackerBundle\Message\Bus\Middleware
  */
 class FlushesEntityManagerChangesAfterHandlingNext implements MessageBusMiddleware
 {

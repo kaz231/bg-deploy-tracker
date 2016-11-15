@@ -1,12 +1,12 @@
 <?php
-namespace AppBundle\DependencyInjection;
+namespace TrackerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Class Configuration
- * @package AppBundle\DependencyInjection
+ * @package TrackerBundle\DependencyInjection
  */
 class Configuration implements ConfigurationInterface
 {

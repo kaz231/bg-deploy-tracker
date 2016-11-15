@@ -1,9 +1,9 @@
 <?php
-namespace AppBundle\Message\Bus\Event;
+namespace TrackerBundle\Message\Bus\Event;
 
 /**
  * Trait RecordsDomainEvents
- * @package AppBundle\Message\Bus\Event
+ * @package TrackerBundle\Message\Bus\Event
  */
 trait RecordsDomainEvents
 {

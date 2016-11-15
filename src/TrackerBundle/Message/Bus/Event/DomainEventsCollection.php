@@ -1,11 +1,11 @@
 <?php
-namespace AppBundle\Message\Bus\Event;
+namespace TrackerBundle\Message\Bus\Event;
 
 use SimpleBus\Message\Recorder\ContainsRecordedMessages;
 
 /**
  * Class DomainEventsCollection
- * @package AppBundle\Message\Bus\Event
+ * @package TrackerBundle\Message\Bus\Event
  */
 final class DomainEventsCollection implements ContainsRecordedMessages
 {
