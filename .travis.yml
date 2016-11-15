@@ -13,7 +13,7 @@ env:
 
 before_install:
     - docker build -f Dockerfile.test -t $DOCKER_REPOSITORY_TEST .
-    - docker run -v $(pwd):/app $DOCKER_REPOSITORY_TEST
+    - docker run -d -v $(pwd):/app $DOCKER_REPOSITORY_TEST
     - export CONTAINER_ID=$(docker ps -lq)
 
 install:
