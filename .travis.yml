@@ -27,7 +27,7 @@ script:
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker run $DOCKER_REPOSITORY_TEST /bin/sh -c "build.sh";
+      docker exec $CONTAINER_ID /bin/sh /app/build.sh;
       docker build -f Dockerfile.prod -t kaz231/bg-deploy-tracker:$COMMIT .;
       docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker tag $REPO:$COMMIT $REPO:latest;
