@@ -13,15 +13,17 @@ env:
 
 before_install:
     - docker build -f Dockerfile.test -t $DOCKER_REPOSITORY_TEST .
+    - docker run -v $(pwd):/app $DOCKER_REPOSITORY_TEST
+    - export CONTAINER_ID=$(docker ps -lq)
 
 install:
-    - docker run -v .:/app $DOCKER_REPOSITORY_TEST /bin/sh -c "composer install"
+    - docker exec $CONTAINER_ID /bin/sh -c "composer install"
 
 script:
-    - docker run -v .:/app $DOCKER_REPOSITORY_TEST /bin/sh -c "vendor/bin/phing static-analysis"
-    - docker run -v .:/app $DOCKER_REPOSITORY_TEST /bin/sh -c "vendor/bin/phing unit-test"
-    - docker run -v .:/app $DOCKER_REPOSITORY_TEST /bin/sh -c "vendor/bin/phing setup-database-test integration-test"
-    - docker run -v .:/app $DOCKER_REPOSITORY_TEST /bin/sh -c "vendor/bin/phing setup-database-test behat"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing static-analysis"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing unit-test"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test integration-test"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test behat"
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
