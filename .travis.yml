@@ -23,7 +23,7 @@ script:
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing static-analysis-ci"
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing unit-test"
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test integration-test"
-    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test behat"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test behat-test"
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
