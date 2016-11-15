@@ -29,8 +29,8 @@ after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker exec $CONTAINER_ID /bin/sh /app/build.sh;
       docker build -f Dockerfile.prod -t kaz231/bg-deploy-tracker:$COMMIT .;
-      docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker tag $REPO:$COMMIT $REPO:latest;
-      docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER;
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker tag $DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:latest;
+      docker tag $DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:travis-$TRAVIS_BUILD_NUMBER;
       docker push kaz231/bg-deploy-tracker;
       fi
