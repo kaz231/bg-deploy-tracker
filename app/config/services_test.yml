@@ -1,10 +1,10 @@
 services:
     tracker.message_bus.collects_events:
-        class: AppBundle\Message\Bus\Middleware\CollectsEventMiddleware
+        class: TrackerBundle\Message\Bus\Middleware\CollectsEventMiddleware
         tags:
             - { name: event_bus_middleware }
 
     tracker.message_bus.catches_exceptions:
-        class: AppBundle\Message\Bus\Middleware\CatchesExceptionMiddleware
+        class: TrackerBundle\Message\Bus\Middleware\CatchesExceptionMiddleware
         tags:
             - { name: command_bus_middleware }

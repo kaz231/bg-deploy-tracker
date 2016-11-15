@@ -1,7 +1,7 @@
 <?php
 namespace Action\Model;
 
-use AppBundle\Message\Bus\Event\RecordsDomainEvents;
+use TrackerBundle\Message\Bus\Event\RecordsDomainEvents;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 

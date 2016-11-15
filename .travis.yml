@@ -20,7 +20,7 @@ install:
     - docker exec $CONTAINER_ID /bin/sh -c "composer install"
 
 script:
-    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing static-analysis"
+    - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing static-analysis-ci"
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing unit-test"
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test integration-test"
     - docker exec $CONTAINER_ID /bin/sh -c "vendor/bin/phing setup-database-test behat"

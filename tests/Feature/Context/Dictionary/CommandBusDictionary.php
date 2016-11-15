@@ -1,8 +1,8 @@
 <?php
 namespace Tests\Feature\Context\Dictionary;
 
-use AppBundle\Message\Bus\Middleware\CatchesExceptionMiddleware;
-use AppBundle\Message\Bus\Middleware\CollectsEventMiddleware;
+use TrackerBundle\Message\Bus\Middleware\CatchesExceptionMiddleware;
+use TrackerBundle\Message\Bus\Middleware\CollectsEventMiddleware;
 use Carbon\Carbon;
 use SimpleBus\Message\Bus\MessageBus;
 
