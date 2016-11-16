@@ -18,6 +18,6 @@ class HealthCheckController extends Controller
      */
     public function checkAction()
     {
-        return new Response('OK', Response::HTTP_OK);
+        return new Response('SOME ERROR', Response::HTTP_BAD_REQUEST);
     }
 }
