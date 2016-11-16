@@ -7,6 +7,8 @@ ENV WEB_DOCUMENT_INDEX app.php
 
 COPY ./ /app/
 
+RUN chown -R application:application /app
+
 WORKDIR /app
 
 EXPOSE 80
