@@ -40,6 +40,12 @@ class Action
     private $value;
 
     /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     * @var string
+     */
+    private $tag;
+
+    /**
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
@@ -50,13 +56,15 @@ class Action
      * @param ActionId $actionId
      * @param ActionName $name
      * @param ActionValue $value
+     * @param string $tag
      */
-    private function __construct(ActionId $actionId, ActionName $name, ActionValue $value)
+    private function __construct(ActionId $actionId, ActionName $name, ActionValue $value, $tag = null)
     {
         $this->actionId = $actionId->raw();
         $this->name = (string) $name;
         $this->value = (string) $value;
         $this->createdAt = Carbon::now();
+        $this->tag = $tag;
     }
 
     /**
